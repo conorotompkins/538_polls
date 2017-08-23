@@ -26,18 +26,20 @@ my_data %>%
   coord_flip()
 
 df <- my_data %>% 
-  select(president, startdate, enddate, approve, disapprove, weight) %>% 
-  gather(key = poll_answer, value = poll_value, -c(president, startdate, enddate, weight))
+  select(president, startdate, enddate, approve, disapprove, pollster, weight) %>% 
+  gather(key = poll_answer, value = poll_value, -c(president, startdate, enddate, weight, pollster))
   
 group.colors <- c(approve = "#03bfc4", disapprove = "#f88179")
 
 df %>% 
-  mutate(poll_value = poll_value / 100) %>% 
+  mutate(poll_value = poll_value / 100, 
+         pollster = factor(pollster, levels = pollsters)) %>% 
   ggplot(aes(startdate, poll_value, color = poll_answer, fill = poll_answer)) +
   geom_hline(yintercept = .50) +
   geom_segment(aes(x = startdate, xend = enddate, y = poll_value, yend = poll_value, alpha = weight)) +
   geom_smooth(aes(weight = weight)) +
-  #geom_smooth(linetype = 2, se = FALSE) + unweighted geom_smooth
+  #geom_smooth(linetype = 2, se = FALSE) + #unweighted geom_smooth
+  facet_wrap(~pollster) +
   scale_color_manual(values = group.colors, labels = c("Approve", "Disapprove")) +
   scale_fill_manual(values = group.colors, labels = c("Approve", "Disapprove")) +
   scale_x_date(date_breaks = "month", date_labels = "%b %Y") +
