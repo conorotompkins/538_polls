@@ -53,7 +53,7 @@ df %>%
        x = NULL,
        y = NULL,
        caption = "@conor_tompkins")
-ggsave(paste0("images/", "Donald Trump Approval Ratings ", Sys.Date(), ".png"), width = 12, height = 9)
+ggsave(paste0("images/", "Donald Trump Approval Ratings ", Sys.Date(), ".png"), width = 15, height = 9)
 
 df %>% 
   mutate(poll_value = poll_value / 100, 
@@ -64,10 +64,10 @@ df %>%
   geom_smooth(aes(weight = weight)) +
   geom_vline(xintercept = as.numeric(ymd(Sys.Date())), linetype = 2) +
   #geom_smooth(linetype = 2, se = FALSE) + #unweighted geom_smooth
-  facet_wrap(~pollster) +
+  facet_wrap(~pollster, ncol = 4) +
   scale_color_manual(values = group.colors, labels = c("Approve", "Disapprove")) +
   scale_fill_manual(values = group.colors, labels = c("Approve", "Disapprove")) +
-  scale_x_date(date_breaks = "month", date_labels = "%b %Y") +
+  scale_x_date(date_breaks = "month", date_labels = "%b") +
   scale_y_continuous(labels = percent_format()) +
   guides(alpha = FALSE,
          color = guide_legend(title = "Poll Response"),
@@ -77,11 +77,12 @@ df %>%
        x = NULL,
        y = NULL,
        caption = "@conor_tompkins")
-ggsave(paste0("images/", "Donald Trump Approval Ratings faceted ", Sys.Date(), ".png"), width = 12, height = 9)
+ggsave(paste0("images/", "Donald Trump Approval Ratings faceted ", Sys.Date(), ".png"), width = 15, height = 9)
 
 
 df %>% 
   ggplot(aes(weight, poll_value, color = poll_answer)) +
+  geom_hline(yintercept = 50) +
   geom_point(alpha = .1) +
   geom_smooth() +
   facet_wrap(~poll_answer,
