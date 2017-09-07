@@ -10,27 +10,22 @@ set.seed(1234)
 
 my_data <- read_csv(URL) %>% 
   mutate(startdate = mdy(startdate),
-         enddate = mdy(enddate))
+         enddate = mdy(enddate),
+         poll_length = as.numeric(enddate - startdate))
 
 write_csv(my_data, paste("538_polls", Sys.Date()), ".csv")
 
-pollsters <- my_data %>% 
-  count(pollster, sort = TRUE) %>% 
-  select(pollster) %>% 
-  unlist()
-
-my_data %>% 
-  mutate(pollster = factor(pollster, levels = pollsters)) %>% 
-  ggplot(aes(pollster, weight)) +
-  geom_jitter(alpha = .25) +
-  coord_flip()
-
 df <- my_data %>% 
-  select(president, startdate, enddate, approve, disapprove, pollster, weight) %>% 
-  gather(key = poll_answer, value = poll_value, -c(president, startdate, enddate, weight, pollster))
+  select(president, startdate, enddate, approve, disapprove, pollster, weight, poll_length) %>% 
+  gather(key = poll_answer, value = poll_value, -c(president, startdate, enddate, weight, pollster, poll_length))
   
 group.colors <- c(approve = "#03bfc4", disapprove = "#f88179")
 
+pollsters <- my_data %>% 
+  count(pollster) %>% 
+  arrange(desc(n)) %>% 
+  select(pollster) %>% 
+  unlist()
 
 df %>% 
   mutate(poll_value = poll_value / 100, 
@@ -79,6 +74,13 @@ df %>%
        caption = "@conor_tompkins")
 ggsave(paste0("images/", "Donald Trump Approval Ratings faceted ", Sys.Date(), ".png"), width = 15, height = 9)
 
+#experimental
+df %>% 
+  mutate(pollster = factor(pollster, levels = pollsters)) %>% 
+  ggplot(aes(pollster, weight)) +
+  geom_jitter(alpha = .1, width = .25, height = 0) +
+  #geom_boxplot() +
+  coord_flip()
 
 df %>% 
   ggplot(aes(weight, poll_value, color = poll_answer)) +
@@ -87,3 +89,10 @@ df %>%
   geom_smooth() +
   facet_wrap(~poll_answer,
              ncol = 1)
+
+df %>%
+  mutate(pollster = factor(pollster, levels = pollsters)) %>% 
+  ggplot(aes(weight, poll_length)) +
+  geom_jitter(alpha = .1, width = 0, height = .25)
+  #facet_wrap(~pollster)
+  #scale_y_discrete(breaks = c(1:20))
