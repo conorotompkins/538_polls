@@ -13,7 +13,7 @@ my_data <- read_csv(URL) %>%
          enddate = mdy(enddate),
          poll_length = as.numeric(enddate - startdate))
 
-write_csv(my_data, paste("538_polls", Sys.Date()), ".csv")
+write_csv(my_data, paste("data/538_polls", Sys.Date()), ".csv")
 
 df <- my_data %>% 
   select(president, startdate, enddate, approve, disapprove, pollster, weight, poll_length) %>% 
