@@ -48,7 +48,7 @@ df %>%
        x = NULL,
        y = NULL,
        caption = "@conor_tompkins")
-ggsave(paste0("images/", "Donald Trump Approval Ratings ", Sys.Date(), ".png"), width = 15, height = 9)
+ggsave("images/Donald Trump Approval Ratings.png", width = 15, height = 9)
 
 df %>% 
   mutate(poll_value = poll_value / 100, 
@@ -72,7 +72,7 @@ df %>%
        x = NULL,
        y = NULL,
        caption = "@conor_tompkins")
-ggsave(paste0("images/", "Donald Trump Approval Ratings faceted ", Sys.Date(), ".png"), width = 15, height = 9)
+ggsave("images/Donald Trump Approval Ratings faceted.png", width = 15, height = 9)
 
 #experimental
 df %>% 
