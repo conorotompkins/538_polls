@@ -43,20 +43,32 @@ df %>%
   guides(alpha = FALSE,
          color = guide_legend(title = "Poll Response"),
          fill = guide_legend(title = "Poll Response")) +
-  labs(title = "Donald Trump Approve Ratings",
+  labs(title = "Donald Trump Approval Ratings",
        subtitle = "Data from 538",
        x = NULL,
        y = NULL,
        caption = "@conor_tompkins")
 ggsave("images/Donald Trump Approval Ratings.png", width = 15, height = 9)
 
+pollsters_top10 <- my_data %>% 
+  count(pollster) %>% 
+  top_n(20) %>% 
+  arrange(desc(n)) %>% 
+  select(pollster) %>% 
+  unlist()
+
+?geom_smooth
+
 df %>% 
+  filter(pollster %in% pollsters_top10) %>% 
   mutate(poll_value = poll_value / 100, 
          pollster = factor(pollster, levels = pollsters)) %>% 
+  group_by(pollster) %>% 
+  mutate(weight_mean = mean(weight)) %>% 
   ggplot(aes(startdate, poll_value, color = poll_answer, fill = poll_answer)) +
   geom_hline(yintercept = .50, size = .25) +
-  geom_segment(aes(x = startdate, xend = enddate, y = poll_value, yend = poll_value, alpha = weight)) +
-  geom_smooth(aes(weight = weight)) +
+  geom_segment(aes(x = startdate, xend = enddate, y = poll_value, yend = poll_value), alpha = .1) +
+  geom_smooth(aes(weight = weight, alpha = weight_mean), linetype = 3) +
   geom_vline(xintercept = as.numeric(ymd(Sys.Date())), linetype = 2) +
   #geom_smooth(linetype = 2, se = FALSE) + #unweighted geom_smooth
   facet_wrap(~pollster, ncol = 4) +
@@ -64,10 +76,11 @@ df %>%
   scale_fill_manual(values = group.colors, labels = c("Approve", "Disapprove")) +
   scale_x_date(date_breaks = "month", date_labels = "%b") +
   scale_y_continuous(labels = percent_format()) +
+  scale_alpha_continuous(range = c(.2, .8)) +
   guides(alpha = FALSE,
          color = guide_legend(title = "Poll Response"),
          fill = guide_legend(title = "Poll Response")) +
-  labs(title = "Donald Trump Approve Ratings",
+  labs(title = "Donald Trump Approval Ratings",
        subtitle = "Data from 538",
        x = NULL,
        y = NULL,

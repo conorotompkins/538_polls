@@ -25,7 +25,7 @@ plot_1 <- df %>%
        y = NULL,
        caption = "@conor_tompkins, Data from 538") +
   theme(legend.position = "bottom")
-
+#?theme
 #create inset plot
 plot_2 <- df %>% 
   mutate(poll_value = poll_value / 100, 
@@ -40,7 +40,8 @@ plot_2 <- df %>%
   scale_fill_manual(values = group.colors, labels = c("Approve", "Disapprove")) +
   #scale_x_date(date_breaks = "month", date_labels = "%b %Y") +
   scale_y_continuous(labels = percent_format(), 
-                     breaks = c(.4, .5, .6)) +
+                     breaks = c(.3, .5, .7), 
+                     limits = c(.30, .70)) +
   guides(alpha = FALSE,
          color = FALSE,
          fill = FALSE) +
@@ -49,7 +50,7 @@ plot_2 <- df %>%
        x = NULL,
        y = NULL,
        caption = NULL) +
-  theme(axis.text.y = element_blank(),
+  theme(axis.text.y = element_text(size = 10),
         axis.text.x = element_text(size = 12))
 
   
