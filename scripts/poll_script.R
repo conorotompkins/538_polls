@@ -57,8 +57,6 @@ pollsters_top10 <- my_data %>%
   select(pollster) %>% 
   unlist()
 
-?geom_smooth
-
 df %>% 
   filter(pollster %in% pollsters_top10) %>% 
   mutate(poll_value = poll_value / 100, 
@@ -84,7 +82,8 @@ df %>%
        subtitle = "Data from 538",
        x = NULL,
        y = NULL,
-       caption = "@conor_tompkins")
+       caption = "@conor_tompkins") +
+  theme(panel.grid.minor = element_blank())
 ggsave("images/Donald Trump Approval Ratings faceted.png", width = 15, height = 9)
 
 #experimental
