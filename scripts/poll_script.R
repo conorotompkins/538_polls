@@ -4,7 +4,7 @@ library(scales)
 
 URL <- "https://projects.fivethirtyeight.com/trump-approval-data/approval_polllist.csv"
 
-theme_set(theme_bw())
+theme_set(theme_bw(base_size = 18))
 
 set.seed(1234)
 
