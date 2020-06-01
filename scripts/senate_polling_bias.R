@@ -35,7 +35,7 @@ plot_1 <- df %>%
   scale_x_continuous(breaks = c(1:11),
                      labels = axis_labels) +
   #coord_flip() +
-  labs(title = "FiveThirtyEight U.S. Senate polling bias",
+  labs(title = "FiveThirtyEight U.S. Senate polling error",
        subtitle = "Data and original analysis from FiveThirtyEight and Nathaniel Rakich \nhttps://fivethirtyeight.com/features/how-accurate-have-senate-polls-been-and-what-could-that-mean-for-november/",
        x = "Election cycle",
        y = "Weighted average error",
@@ -61,7 +61,7 @@ plot_2 <- df %>%
   scale_x_continuous(breaks = c(1:11),
                      labels = axis_labels) +
   #coord_flip() +
-  labs(title = "FiveThirtyEight U.S. Senate polling bias direction",
+  labs(title = "FiveThirtyEight U.S. Senate polling error direction",
        subtitle = "Data and original analysis from FiveThirtyEight and Nathaniel Rakich \nhttps://fivethirtyeight.com/features/how-accurate-have-senate-polls-been-and-what-could-that-mean-for-november/",
        x = "Election cycle",
        y = "Weighted average statistical bias",
