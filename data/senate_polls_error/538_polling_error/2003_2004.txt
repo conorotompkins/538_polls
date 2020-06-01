@@ -1,0 +1,5 @@
+Florida	20	2.5	D+1.9
+Colorado	13	3.5	R+1.6
+Pennsylvania	13	9.1	R+8.7
+Ohio	12	3.4	R+0.6
+Oklahoma	10	9.6	D+9.6

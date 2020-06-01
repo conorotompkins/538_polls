@@ -1,0 +1,6 @@
+Georgia	18	5.0	D+1.4
+North Carolina	16	4.7	R+4.6
+Virginia	16	3.9	R+2.9
+Minnesota	13	4.2	D+0.2
+New Hampshire	13	2.9	D+2.2
+Colorado	11	3.5	D+0.7

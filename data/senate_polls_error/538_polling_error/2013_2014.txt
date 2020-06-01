@@ -1,0 +1,10 @@
+Colorado	21	2.5	D+0.3
+Iowa	21	6.6	D+6.6
+North Carolina	21	2.8	D+2.0
+Georgia	20	6.1	D+6.1
+Massachusetts	19	4.1	R+2.0
+New Hampshire	16	2.6	R+1.0
+Louisiana	15	5.1	R+5.0
+New Jersey	13	3.1	D+2.7
+Michigan	11	2.2	R+0.8
+Kansas	10	11.5	—

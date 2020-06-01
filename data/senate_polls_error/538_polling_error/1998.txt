@@ -1,0 +1,2 @@
+New York	19	8.1	R+8.1
+Illinois	10	10.5	R+9.2

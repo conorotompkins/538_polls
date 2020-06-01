@@ -1,0 +1,12 @@
+California	23	5.2	R+5.2
+New York	22	6.1	R+5.0
+Pennsylvania	18	3.0	R+2.0
+Ohio	15	2.8	D+0.4
+Florida	13	6.2	—
+Illinois	13	2.7	D+1.0
+Massachusetts	13	7.7	D+3.5
+Colorado	12	3.0	R+3.0
+Kentucky	11	4.8	D+4.0
+West Virginia	11	6.8	R+6.8
+Connecticut	10	3.1	R+1.3
+Washington	10	3.4	R+3.0

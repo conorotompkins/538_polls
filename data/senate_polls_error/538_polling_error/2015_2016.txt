@@ -1,0 +1,12 @@
+Florida	30	4.3	D+2.4
+Pennsylvania	23	4.5	D+4.2
+North Carolina	22	4.5	D+4.4
+New Hampshire	21	3.6	D+0.3
+Nevada	16	3.0	R+1.2
+Georgia	13	4.2	D+2.5
+Arizona	12	4.2	D+3.6
+Missouri	12	2.8	D+2.5
+Ohio	12	5.8	D+5.8
+Colorado	10	3.2	D+1.8
+Louisiana	10	3.9	D+2.5
+Wisconsin	10	6.0	D+6.0
